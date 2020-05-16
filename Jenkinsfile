@@ -1,14 +1,11 @@
 pipeline {
-    agent {
-        any {
-            //image 'maven:3-alpine' 
-            //args '-v /root/.m2:/root/.m2' 
-        }
-    }
+    agent none 
     stages {
         stage('Build') { 
             steps {
-                cmd 'mvn -B -DskipTests clean package' 
+                withMaven(mavenLocalRepo: ".repository"){ cmd 'mvn -B -DskipTests clean package' }
+        	stash includes: ".repository/", name "repository"
+                //cmd 'mvn -B -DskipTests clean package' 
             }
         }
     }
