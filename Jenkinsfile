@@ -1,12 +1,24 @@
 pipeline {
-    agent any 
+    agent any
+    options {
+        skipStagesAfterUnstable()
+    }
     stages {
-        stage('Build') { 
+        stage('Build') {
             steps {
-                withMaven(mavenLocalRepo: ".repository"){ bat 'mvn -B -DskipTests clean package' }
-        	//stash includes: ".repository/", name "repository"
-                //cmd 'mvn -B -DskipTests clean package' 
+            	withMaven(mavenLocalRepo: "C:\Users\23824\.m2\repository"){ bat 'mvn -B -DskipTests clean package' }
             }
         }
+        stage('Test') {
+            steps {
+                bat 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
+        }
+       
     }
 }
