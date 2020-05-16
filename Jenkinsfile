@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-            	withMaven(mavenLocalRepo: "C:\Users\23824\.m2\repository"){ bat 'mvn -B -DskipTests clean package' }
+            	withMaven(mavenLocalRepo: "C:/Users/23824/.m2/repository/"){ bat 'mvn -B -DskipTests clean package' }
             }
         }
         stage('Test') {
