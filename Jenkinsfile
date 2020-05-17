@@ -22,7 +22,7 @@ pipeline {
         stage('Deliver') { 
             steps {
                 //bat '/jenkins/scripts/deliver.sh'
-                bat 'C:\Users\23824\.jenkins\workspace\simple-java-maven-app\jenkins\scripts\deliver.sh'
+                bat 'C:/Users/23824/.jenkins/workspace/simple-java-maven-app/jenkins/scripts/deliver.sh'
             }
         }
     }
